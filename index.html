@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SRAC — Service de renseignement anti-censure</title>
+<meta name="description" content="SRAC — Service indépendant de renseignement et d'assistance anti-censure. Protection de la liberté d'expression, collecte d'informations publiques, conseils de sécurité numérique." />
+
+<!-- Styles sobres et professionnels -->
+<style>
+  :root{
+    --bg:#0f1720;
+    --card:#0b1220;
+    --muted:#9aa6b2;
+    --accent:#1fb6ff;
+    --accent-2:#60d394;
+    --text:#e6eef6;
+    --danger:#ff6b6b;
+    --radius:10px;
+    --max-w:1000px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background: linear-gradient(180deg, rgba(10,14,20,1) 0%, rgba(6,10,14,1) 100%), var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:32px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .container{
+    width:100%;
+    max-width:var(--max-w);
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:calc(var(--radius) + 6px);
+    padding:28px;
+    box-shadow: 0 10px 30px rgba(2,6,12,0.6);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+
+  header{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .logo{
+    width:68px;
+    height:68px;
+    background:linear-gradient(135deg,var(--accent), var(--accent-2));
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color:#052228;
+    box-shadow: 0 6px 18px rgba(31,182,255,0.12), inset 0 -6px 14px rgba(0,0,0,0.15);
+  }
+  h1{font-size:20px;margin:0}
+  p.lead{margin:0;color:var(--muted);font-size:13px}
+
+  main{
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:22px;
+    margin-top:20px;
+  }
+
+  /* left column */
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+    border-radius:var(--radius);
+    padding:18px;
+    border:1px solid rgba(255,255,255,0.02);
+  }
+
+  .mission h2{margin:0 0 8px 0}
+  .meta{display:flex;gap:10px;color:var(--muted);font-size:13px;margin-bottom:12px}
+  .features{display:grid;gap:12px;margin-top:12px}
+  .feature{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .feature .icon{
+    width:44px;height:44px;border-radius:8px;
+    background:rgba(255,255,255,0.03);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--accent);
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .feature p{margin:0;color:var(--muted);font-size:14px}
+
+  /* right column (contact) */
+  .contact{
+    position:sticky;
+    top:28px;
+    align-self:start;
+  }
+  .contact .card{padding:16px}
+  label{display:block;font-size:13px;color:var(--muted);margin:12px 0 6px}
+  input[type="text"], textarea, input[type="password"]{
+    width:100%;
+    padding:10px 12px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.02);
+    color:var(--text);
+    border:1px solid rgba(255,255,255,0.02);
+    font-size:14px;
+    outline:none;
+  }
+  textarea{min-height:120px;resize:vertical}
+  .row{display:flex;gap:8px}
+  .btn{
+    display:inline-flex;gap:10px;align-items:center;justify-content:center;
+    padding:10px 14px;border-radius:8px;background:var(--accent);
+    color:#022; font-weight:600;border:none;cursor:pointer;
+    box-shadow:0 6px 18px rgba(31,182,255,0.12);
+  }
+  .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(31,182,255,0.12)}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--muted)}
+
+  .output{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    font-size:13px;
+    background:rgba(255,255,255,0.01);
+    padding:10px;border-radius:8px;margin-top:10px;word-break:break-all;color:var(--muted)
+  }
+
+  footer{
+    margin-top:18px;color:var(--muted);font-size:13px;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+  }
+
+  /* small screens */
+  @media (max-width:880px){
+    main{grid-template-columns:1fr; }
+    .contact{position:relative;top:auto}
+  }
+
+  /* subtle accessibility focus */
+  input:focus, textarea:focus, button:focus{
+    box-shadow:0 0 0 3px rgba(31,182,255,0.08);
+    border-color:rgba(31,182,255,0.18);
+  }
+
+  .hint{font-size:12px;color:var(--muted);margin-top:8px}
+  .danger{color:var(--danger);font-weight:600}
+</style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div class="logo" aria-hidden="true">SRAC</div>
+      <div>
+        <h1>SRAC — Service de renseignement anti-censure</h1>
+        <p class="lead">Protection de la liberté d'expression • Assistance technique & informationnelle • Respect strict de la vie privée</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- Left: mission, services -->
+      <section aria-labelledby="mission" class="card mission" tabindex="0">
+        <div class="meta" role="status" aria-live="polite">
+          <div>Établi : <strong>2025</strong></div>
+          <div>Siège : <strong>Indépendant</strong></div>
+        </div>
+
+        <h2 id="mission">Notre mission</h2>
+        <p style="color:var(--muted);margin-top:8px">
+          SRAC accompagne journalistes, lanceurs d'alerte, organisations et citoyens confrontés à la censure. Nous fournissons analyses, outils de contournement légitimes, et conseils de sécurité numérique en respectant la loi et la dignité humaine.
+        </p>
+
+        <div class="features" aria-label="Services SRAC">
+          <div class="feature" role="article">
+            <div class="icon">I</div>
+            <div>
+              <strong>Collecte d'information publique</strong>
+              <p>Analyse d'informations accessibles publiquement, surveillance des risques de censure et documentation des incidents.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon">S</div>
+            <div>
+              <strong>Conseils de sécurité</strong>
+              <p>Bonnes pratiques pour protéger l'identité, la communication et les sources — audits privacy-friendly.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon">A</div>
+            <div>
+              <strong>Assistance technique</strong>
+              <p>Guides neutres pour l'utilisation d'outils chiffrés, et options de publication résistantes à la censure (éthique, légale).</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon">R</div>
+            <div>
+              <strong>Recherche & plaidoyer</strong>
+              <p>Rapports et répertoires de cas pour éclairer décisionnaires et le grand public sur la censure et les réponses possibles.</p>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.02);margin:18px 0">
+
+        <section aria-labelledby="principes">
+          <h3 id="principes">Principes</h3>
+          <ul style="color:var(--muted);margin-top:8px">
+            <li>Neutralité et indépendance</li>
+            <li>Transparence sur nos méthodes (dans la mesure du raisonnable)</li>
+            <li>Respect strict de la législation et des droits humains</li>
+            <li>Minimalisme des données : nous ne collectons que l'indispensable</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- Right: contact / secure message -->
+      <aside class="contact">
+        <div class="card" aria-labelledby="contact">
+          <h2 id="contact" style="margin-top:0">Contact sécurisé</h2>
+          <p class="hint">Chiffrement local : le message ci-dessous est chiffré dans votre navigateur avec une passphrase que vous choisissez. Copiez le résultat et envoyez-le par votre canal sécurisé (e-mail chiffré, messagerie TM, etc.).</p>
+
+          <label for="name">Votre nom (optionnel)</label>
+          <input id="name" type="text" autocomplete="name" placeholder="Ex. Jane Doe">
+
+          <label for="subject">Sujet</label>
+          <input id="subject" type="text" placeholder="Objet du message">
+
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Rédigez votre message ici — n'incluez pas d'informations sensibles dans le titre."></textarea>
+
+          <label for="pass">Passphrase de chiffrement</label>
+          <input id="pass" type="password" placeholder="Mot de passe / phrase secrète (vous seul(e) le connaissez)">
+
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button class="btn" id="encryptBtn" aria-controls="output">Chiffrer (local)</button>
+            <button class="btn secondary" id="clearBtn" type="button">Effacer</button>
+          </div>
+
+          <div id="status" class="hint" aria-live="polite"></div>
+
+          <div id="output" class="output" role="region" aria-label="Message chiffré" tabindex="0"></div>
+
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <button class="btn ghost" id="copyBtn">Copier</button>
+            <button class="btn ghost" id="downloadBtn">Télécharger (.srac)</button>
+          </div>
+
+          <p class="hint" style="margin-top:12px">
+            Conseils : choisissez une passphrase longue et unique. Conservez la passphrase en sécurité : sans elle, SRAC ne pourra pas déchiffrer votre message.
+          </p>
+
+          <p class="hint danger" style="margin-top:8px">
+            Note légale : n'utilisez pas ce site pour planifier des activités illégales. SRAC respecte la loi et les droits humains.
+          </p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div>SRAC — respect de la vie privée • © SRAC 2025</div>
+      <div style="color:var(--muted);font-size:13px">Version statique • Pas de stockage côté serveur</div>
+    </footer>
+  </div>
+
+<script>
+/*
+  Contact sécurisé (client-side)
+  - PBKDF2 deriveKey from passphrase
+  - AES-GCM encryption
+  - Output: JSON {v:1, salt:..., iv:..., ciphertext:..., meta:{name,subject,ts}}
+  - All values base64 encoded
+*/
+
+(function(){
+  const encryptBtn = document.getElementById('encryptBtn');
+  const copyBtn = document.getElementById('copyBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const output = document.getElementById('output');
+  const status = document.getElementById('status');
+
+  function toBase64(buffer){
+    return btoa(String.fromCharCode(...new Uint8Array(buffer)));
+  }
+  function fromBase64(str){
+    const binary = atob(str);
+    const len = binary.length;
+    const bytes = new Uint8Array(len);
+    for(let i=0;i<len;i++) bytes[i]=binary.charCodeAt(i);
+    return bytes.buffer;
+  }
+  function genSalt(len=16){
+    return crypto.getRandomValues(new Uint8Array(len));
+  }
+  function genIv(len=12){
+    return crypto.getRandomValues(new Uint8Array(len));
+  }
+
+  async function deriveKey(passphrase, salt) {
+    const enc = new TextEncoder();
+    const keyMaterial = await crypto.subtle.importKey(
+      "raw",
+      enc.encode(passphrase),
+      {name: "PBKDF2"},
+      false,
+      ["deriveKey"]
+    );
+    return crypto.subtle.deriveKey(
+      {
+        name: "PBKDF2",
+        salt: salt,
+        iterations: 250000, // coûteux mais raisonnable sur machines modernes
+        hash: "SHA-256"
+      },
+      keyMaterial,
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["encrypt", "decrypt"]
+    );
+  }
+
+  async function encryptMessage(plainText, passphrase){
+    const enc = new TextEncoder();
+    const salt = genSalt(16);
+    const iv = genIv(12);
+    const key = await deriveKey(passphrase, salt);
+    const cipherBuffer = await crypto.subtle.encrypt(
+      { name: "AES-GCM", iv: iv },
+      key,
+      enc.encode(plainText)
+    );
+
+    return {
+      v: 1,
+      salt: toBase64(salt.buffer),
+      iv: toBase64(iv.buffer),
+      ciphertext: toBase64(cipherBuffer)
+    };
+  }
+
+  function tsNow(){
+    return new Date().toISOString();
+  }
+
+  encryptBtn.addEventListener('click', async function(){
+    status.textContent = '';
+    output.textContent = '';
+    const name = document.getElementById('name').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value;
+    const pass = document.getElementById('pass').value;
+
+    if(!message){
+      status.textContent = 'Le message est vide — rien à chiffrer.';
+      return;
+    }
+    if(!pass || pass.length < 8){
+      status.textContent = 'Choisissez une passphrase d\'au moins 8 caractères.';
+      return;
+    }
+
+    try{
+      encryptBtn.disabled = true;
+      status.textContent = 'Chiffrement en cours…';
+      // build payload
+      const payload = {
+        meta: { name: name || null, subject: subject || 'Sans sujet', ts: tsNow() },
+        body: message
+      };
+      const json = JSON.stringify(payload);
+      const encObj = await encryptMessage(json, pass);
+
+      const packaged = {
+        v: encObj.v,
+        salt: encObj.salt,
+        iv: encObj.iv,
+        ciphertext: encObj.ciphertext,
+        meta: payload.meta
+      };
+
+      const blobText = JSON.stringify(packaged, null, 2);
+      output.textContent = blobText;
+      status.textContent = 'Chiffrement terminé — copiez ou téléchargez le fichier et envoyez-le par un canal sécurisé.';
+    } catch(err){
+      console.error(err);
+      status.textContent = 'Erreur lors du chiffrement : ' + (err && err.message ? err.message : String(err));
+    } finally {
+      encryptBtn.disabled = false;
+    }
+  });
+
+  copyBtn.addEventListener('click', async function(){
+    if(!output.textContent){
+      status.textContent = 'Rien à copier.';
+      return;
+    }
+    try{
+      await navigator.clipboard.writeText(output.textContent);
+      status.textContent = 'Copié dans le presse-papier.';
+    }catch(e){
+      status.textContent = 'Impossible de copier automatiquement. Sélectionnez et copiez manuellement.';
+    }
+  });
+
+  downloadBtn.addEventListener('click', function(){
+    if(!output.textContent){
+      status.textContent = 'Aucun contenu à télécharger.';
+      return;
+    }
+    const blob = new Blob([output.textContent], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const subj = (document.getElementById('subject').value || 'message').replace(/\s+/g,'_').slice(0,60);
+    a.download = `srac_${subj}_${(new Date()).toISOString().slice(0,19).replace(/[:T]/g,'-')}.srac.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    status.textContent = 'Fichier prêt au téléchargement.';
+  });
+
+  clearBtn.addEventListener('click', function(){
+    document.getElementById('name').value='';
+    document.getElementById('subject').value='';
+    document.getElementById('message').value='';
+    document.getElementById('pass').value='';
+    output.textContent='';
+    status.textContent='Champs effacés.';
+  });
+
+  // prevent accidental form submission by Enter
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') && (e.ctrlKey || e.metaKey)){
+      // allow ctrl+enter to encrypt
+      e.preventDefault();
+    }
+  });
+})();
+</script>
+</body>
+</html>
