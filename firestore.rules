@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Collection des protégés
+    match /protected/{docId} {
+      allow read: if true;
+      allow write: if false; // écriture interdite publiquement
+    }
+
+    // Actualités
+    match /news/{docId} {
+      allow read: if true;
+      allow write: if false; // uniquement modifiable par admin
+    }
+
+    // Chat global : lecture publique, écriture anonyme
+    match /globalChat/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
+
+
