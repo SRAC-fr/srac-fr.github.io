@@ -1,52 +1,86 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SRAC — Service de Renseignement Anti-Censure</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.R.A.C. – Services de Renseignement Anti Censure</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">SRAC</div>
-    <nav>
-      <a href="#protected">Protégés</a>
-      <a href="#news">Actualités</a>
-      <a href="#chat">Chat</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="protected">
-      <h2>Organisations & personnes protégées</h2>
-      <div id="protectedList" class="card-grid"></div>
-    </section>
-
-    <section id="news">
-      <h2>Actualités</h2>
-      <div id="newsList" class="card-grid"></div>
-    </section>
-
-    <section id="chat">
-      <h2>Chat global sécurisé</h2>
-      <div class="chat-box">
-        <div id="messages"></div>
-        <div class="chat-input">
-          <input type="text" id="msgInput" placeholder="Écrire un message...">
-          <button id="sendBtn">Envoyer</button>
+    <header>
+        <div class="container">
+            <h1>S.R.A.C.</h1>
+            <p class="subtitle">Services de Renseignement Anti Censure</p>
+            <nav>
+                <ul>
+                    <li><a href="#mission">Notre Mission</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#valeurs">Valeurs</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
-    </section>
-  </main>
+    </header>
 
-  <footer>© SRAC 2025 — Tous droits réservés.</footer>
+    <main>
+        <section id="mission" class="section">
+            <div class="container">
+                <h2>Notre Mission</h2>
+                <p>
+                    Le S.R.A.C. œuvre pour la liberté d'information et la protection 
+                    de la communication numérique. Nous défendons un accès sûr, 
+                    équitable et non censuré à l'information.
+                </p>
+            </div>
+        </section>
 
-  <!-- Firebase Web SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js"></script>
+        <section id="services" class="section dark">
+            <div class="container">
+                <h2>Nos Services</h2>
+                <ul class="service-list">
+                    <li><strong>Veille et analyse :</strong> observation des menaces informationnelles.</li>
+                    <li><strong>Protection des données :</strong> accompagnement dans la sécurisation des échanges.</li>
+                    <li><strong>Conseil stratégique :</strong> assistance face aux risques de censure.</li>
+                </ul>
+            </div>
+        </section>
 
-  <script src="app.js"></script>
+        <section id="valeurs" class="section">
+            <div class="container">
+                <h2>Nos Valeurs</h2>
+                <div class="values">
+                    <div class="value-box">
+                        <h3>Intégrité</h3>
+                        <p>Respect absolu de la confidentialité et de l’éthique.</p>
+                    </div>
+                    <div class="value-box">
+                        <h3>Indépendance</h3>
+                        <p>Nos actions sont libres de toute influence politique ou économique.</p>
+                    </div>
+                    <div class="value-box">
+                        <h3>Transparence</h3>
+                        <p>Nos démarches reposent sur la clarté et la confiance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section dark">
+            <div class="container">
+                <h2>Contact</h2>
+                <p>Pour toute demande d'information ou collaboration, contactez-nous sur notre compte officiel :</p>
+                <a href="https://www.instagram.com/s.r.a.c_officiel" target="_blank" class="contact-button">
+                    👉 Nous contacter sur Instagram
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 S.R.A.C. – Tous droits réservés.</p>
+        </div>
+    </footer>
 </body>
 </html>
 
