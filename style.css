@@ -155,14 +155,14 @@ nav a:hover {
 
 /* ====== CONTACT ====== */
 .contact-button {
-    display: inline-block;
+    display: block;
     background: #ff4040;
     color: #fff;
     padding: 0.9rem 1.6rem;
     border-radius: 4px;
     text-decoration: none;
     font-weight: 600;
-    margin-top: 1.5rem;
+    margin: 1.5rem auto 0;
     transition: background 0.3s, transform 0.2s;
 }
 
